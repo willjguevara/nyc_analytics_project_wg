@@ -9,8 +9,6 @@ sources:
         description: |
           NYC 311 service requests for Dept of Transportation.
           One row per service request.
-version: 2
-sources:
   - name: raw
     description: Raw data loaded from NYC Open Data
     database: william-guevara-baruch
