@@ -34,6 +34,7 @@ cleaned AS (
 
        -- Date/Time
        CAST(current_status_date AS TIMESTAMP) AS current_status_date,
+       CAST(first_permit_date AS TIMESTAMP) AS first_permit_date,
        CAST(signoff_date AS TIMESTAMP) AS signoff_date,
 
        -- Request details
