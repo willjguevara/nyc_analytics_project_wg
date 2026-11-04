@@ -24,7 +24,7 @@ models:
    assignment_work:
      staging:
        +materialized: table
-       +schema: nyc_homework_raw_data
+       +schema: nyc_homework_staging
 
      marts:
        +materialized: table
