@@ -60,6 +60,6 @@ null_placeholder AS (
 
 )
 
-SELECT borough FROM location_dimension
+SELECT borough, council_district, zip FROM location_dimension
 UNION ALL
-SELECT borough FROM null_placeholder
+SELECT borough, council_district, zip FROM null_placeholder
