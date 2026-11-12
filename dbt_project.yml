@@ -39,3 +39,24 @@ models:
        dot_311:
          +materialized: table
 
+#group project
+   project_group6_work:
+     staging:
+       +materialized: table
+       +schema: project_group6_staging
+
+     marts:
+       +materialized: table
+       +schema: project_group6_final_warehouse
+      
+       conformed:
+         +materialized: table
+
+       dob_job_filings:
+         +materialized: table
+
+       dot_311:
+         +materialized: table
+
+
+
