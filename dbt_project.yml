@@ -52,10 +52,10 @@ models:
        conformed:
          +materialized: table
 
-       dob_job_filings:
+       open_parking_camera_violations:
          +materialized: table
 
-       dot_311:
+       parking_traffic_311:
          +materialized: table
 
 
