@@ -25,6 +25,18 @@ all_agencies AS (
 
 ),
 
+standardized_agencies AS (
+
+    SELECT DISTINCT
+        CASE
+            WHEN agency_name = 'New York City Police Department'
+                THEN 'POLICE DEPARTMENT'
+            ELSE TRIM(agency_name)
+        END AS agency_name
+    FROM all_agencies
+
+),
+
 dim_agency AS (
 
     SELECT
@@ -32,7 +44,7 @@ dim_agency AS (
             'agency_name',
         ]) }} AS agency_key,
         agency_name
-    FROM all_agencies
+    FROM standardized_agencies
 
 )
 
