@@ -5,40 +5,19 @@ WITH source AS (
 
 cleaned AS (
     SELECT
-        -- Get all columns from source, except ones we're transforming below
-        * EXCEPT (
-            summons_number,
-            issue_date,
-            judgment_entry_date,
-            violation_time,
-            violation,
-            fine_amount,
-            penalty_amount,
-            interest_amount,
-            reduction_amount,
-            payment_amount, 
-            amount_due, 
-            violation_status,
-            plate,
-            state,
-            license_type,
-            violation,
-            precinct,
-            county,
-            issuing_agency
-        ),
 
         -- Identifiers
         CAST(summons_number AS STRING) AS summons_number,
 
         -- Date/Time
-        SAFE_CAST(issue_date AS TIMESTAMP) AS issue_date,
-        SAFE_CAST(judgment_entry_date AS TIMESTAMP) AS judgment_entry_date,
+        SAFE.PARSE_TIMESTAMP('%m/%d/%Y', TRIM(issue_date)) AS issue_date,
+        SAFE.PARSE_TIMESTAMP('%m/%d/%Y', TRIM(judgment_entry_date)) AS judgment_entry_date, 
         TRIM(CAST(violation_time AS STRING)) AS violation_time,
 
-        -- Request details
+        --details
         TRIM(CAST(issuing_agency AS STRING)) AS agency_name,
         TRIM(CAST(plate AS STRING)) AS plate,
+        TRIM(CAST(license_type AS STRING)) AS license_type,
 
         -- Location
         TRIM(CAST(precinct AS STRING)) AS police_precinct,
@@ -65,12 +44,12 @@ cleaned AS (
         END AS borough,
 
         --amounts
-        CAST(amount_due as NUMERIC) AS amount_due,
-        CAST(fine_amount as NUMERIC) AS fine_amount,
-        CAST(interest_amount as NUMERIC) AS interest_amount,
-        CAST(payment_amount as NUMERIC) AS payment_amount,
-        CAST(penalty_amount as NUMERIC) AS penalty_amount,
-        CAST(reduction_amount as NUMERIC) AS reduction_amount,
+        SAFE_CAST(amount_due as NUMERIC) AS amount_due,
+        SAFE_CAST(fine_amount as NUMERIC) AS fine_amount,
+        SAFE_CAST(interest_amount as NUMERIC) AS interest_amount,
+        SAFE_CAST(payment_amount as NUMERIC) AS payment_amount,
+        SAFE_CAST(penalty_amount as NUMERIC) AS penalty_amount,
+        SAFE_CAST(reduction_amount as NUMERIC) AS reduction_amount,
 
         --violation details
         TRIM(CAST(violation AS STRING)) AS type_of_violation,
