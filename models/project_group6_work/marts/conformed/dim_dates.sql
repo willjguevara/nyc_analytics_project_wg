@@ -1,7 +1,6 @@
 -- Conformed date dimension shared by Fact_311Complaint and
 -- Fact_open_parking_camera_violations.
 -- Grain: one row per calendar day, plus one '-1' row for unknown/missing dates.
--- date_key format: 'YYYYMMDD' (string), e.g. '20240315'.
 
 WITH bounds_source AS (
     -- Pull every date the facts can point to, so no fact row is ever orphaned
