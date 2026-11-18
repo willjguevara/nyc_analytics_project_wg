@@ -31,7 +31,7 @@ cleaned AS (
         ),
 
         -- Identifiers
-        CAST(unique_key AS STRING) AS request_id,
+        CAST(unique_key AS STRING) AS unique_key,
 
         -- Date/Time
         SAFE_CAST(created_date AS TIMESTAMP) AS created_date,
